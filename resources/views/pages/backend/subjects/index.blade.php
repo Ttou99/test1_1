@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+
     <div class="page-wrapper">
         <div class="content container-fluid">
 
@@ -55,176 +56,51 @@
                                         <h3 class="page-title">Subjects</h3>
                                     </div>
                                     <div class="col-auto text-end float-end ms-auto download-grp">
-                                        <a href="{{route('subjects.index')}}" class="btn btn-outline-gray me-2 active"><i
-                                                class="feather-list"></i></a>
 
-                                        <a href="#" class="btn btn-outline-primary me-2"><i class="fas fa-download"></i>
-                                            Download</a>
-                                        <a href="{{route('teachers.create')}}" class="btn btn-primary"><i
+                                        <a href="{{route('subjects.create')}}" class="btn btn-primary"><i
                                                 class="fas fa-plus"></i></a>
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="table-responsive">
+                                <table
+                                    class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
+                                    <thead class="student-thread">
+                                    <tr>
 
-                            <div id="sidebar-menu" class="sidebar-menu">
-                                <ul>
+                                        <th>ID</th>
+                                        <th>Academic Year </th>
+                                        <th class="text-end">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
+                                        <tr>
 
-                                    <li class="submenu">
-                                        <a href="#"><i class=""></i> <span> 1ère année informatique</span>
-                                            <span class="menu-arrow"></span></a>
-                                        <ul>
-                                            <li><a href="#">Semestre 1</a></li>
-                                            <li><a href="#">Semestre 2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="submenu">
-                                        <a href="#"><i class=""></i> <span> 2ème année informatique</span> <span
-                                                class="menu-arrow"></span></a>
-                                        <ul>
-                                            <li><a href="#">Semestre 1</a></li>
-                                            <li><a href="#">Semestre 2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="submenu">
-                                        <a href="#"><i class=""></i> <span> 3ème année informatique</span> <span
-                                                class="menu-arrow"></span></a>
-                                        <ul>
-                                            <li>
-                                        <a href="#"><i class=""></i> <span> Ingénierie des Systèmes d'Information et du Logiciel (ISIL)</span>
-                                            <span class="menu-arrow"></span></a>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="text-end">
+                                                <div class="actions">
+                                                    <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
+                                                        <i class="feather-eye"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-sm bg-danger-light">
+                                                        <i class="feather-edit"></i>
+                                                    </a>&nbsp;&nbsp;
+                                                    <form action="#" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm bg-success-light me-2"><i class="feather-trash"></i></button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
 
-                                            <ul>
-                                            <li><a href="#">Semestre 1</a></li>
-                                            <li><a href="#">Semestre 2</a></li>
-                                            </ul>
-                                            </li>
-
-                                            <li>
-                                                <a href="#"><i class=""></i> <span> Systèmes Informatiques (SI)</span>
-                                                    <span class="menu-arrow"></span></a>
-
-                                                <ul>
-                                                    <li><a href="#">Semestre 1</a></li>
-                                                    <li><a href="#">Semestre 2</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-
-
-                                    </li>
-
-                                    <li class="submenu">
-                                        <a href="#"><i class=""></i> <span> 1ère année Master</span> <span
-                                                class="menu-arrow"></span></a>
-                                        <ul>
-                                            <li>
-                                                <a href="#"><i class=""></i> <span> Informatique Décisionnelle et Optimisation (IDO)</span>
-                                                    <span class="menu-arrow"></span></a>
-
-                                                <ul>
-                                                    <li><a href="#">Semestre 1</a></li>
-                                                    <li><a href="#">Semestre 2</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li>
-                                                <a href="#"><i class=""></i> <span> Réseaux et Technologies de l'Information et de la Communication (RTIC)</span>
-                                                    <span class="menu-arrow"></span></a>
-
-                                                <ul>
-                                                    <li><a href="#">Semestre 1</a></li>
-                                                    <li><a href="#">Semestre 2</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li>
-                                                <a href="#"><i class=""></i> <span> Système d'Information et Génie Logiciel (SIGL)</span>
-                                                    <span class="menu-arrow"></span></a>
-
-                                                <ul>
-                                                    <li><a href="#">Semestre 1</a></li>
-                                                    <li><a href="#">Semestre 2</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li>
-                                                <a href="#"><i class=""></i> <span> Intelligence artificielle (IA)</span>
-                                                    <span class="menu-arrow"></span></a>
-
-                                                <ul>
-                                                    <li><a href="#">Semestre 1</a></li>
-                                                    <li><a href="#">Semestre 2</a></li>
-                                                </ul>
-                                            </li>
-
-
-                                        </ul>
-
-
-                                    </li>
-
-                                    <li class="submenu">
-                                        <a href="#"><i class=""></i> <span> 2ème année Master</span> <span
-                                                class="menu-arrow"></span></a>
-                                        <ul>
-                                            <li>
-                                                <a href="#"><i class=""></i> <span> Informatique Décisionnelle et Optimisation (IDO)</span>
-                                                    <span class="menu-arrow"></span></a>
-
-                                                <ul>
-                                                    <li><a href="#">Semestre 1</a></li>
-                                                    <li><a href="#">Semestre 2</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li>
-                                                <a href="#"><i class=""></i> <span> Réseaux et Technologies de l'Information et de la Communication (RTIC)</span>
-                                                    <span class="menu-arrow"></span></a>
-
-                                                <ul>
-                                                    <li><a href="#">Semestre 1</a></li>
-                                                    <li><a href="#">Semestre 2</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li>
-                                                <a href="#"><i class=""></i> <span> Système d'Information et Génie Logiciel (SIGL)</span>
-                                                    <span class="menu-arrow"></span></a>
-
-                                                <ul>
-                                                    <li><a href="#">Semestre 1</a></li>
-                                                    <li><a href="#">Semestre 2</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li>
-                                                <a href="#"><i class=""></i> <span> Intelligence artificielle (IA)</span>
-                                                    <span class="menu-arrow"></span></a>
-
-                                                <ul>
-                                                    <li><a href="#">Semestre 1</a></li>
-                                                    <li><a href="#">Semestre 2</a></li>
-                                                </ul>
-                                            </li>
-
-
-                                        </ul>
-
-
-                                    </li>
-
-
-
-                                </ul>
+                                </table>
                             </div>
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>
@@ -233,6 +109,7 @@
 
 
     </div>
+
 
 
 @endsection

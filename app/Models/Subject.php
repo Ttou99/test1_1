@@ -9,7 +9,15 @@ class Subject extends Model
 {
     use HasFactory;
 
-    public function gender()
+    public function Academicyear()
     {
-        return $this->belongsTo(Gender::class);
-    }}
+        return $this->belongsTo(Academicyear::class);
+    }
+
+    public function Branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
+}
+

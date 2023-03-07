@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
+          //  $table->bigInteger('academicyear_id')->unsigned();
+          //  $table->bigInteger('branch_id')->unsigned();
             $table->timestamps();
         });
     }

@@ -31,7 +31,7 @@
                             class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="{{route('subjects.index')}}">Subject List</a></li>
-                        <li><a href="add-subject.html">Subject Add</a></li>
+                        <li><a href="{{route('subjects.create')}}">Subject Add</a></li>
                     </ul>
                 </li>
                 <li class="submenu">

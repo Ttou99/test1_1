@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Academicyear;
+use App\Models\Branch;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SubjectController extends Controller
 {
@@ -23,7 +26,9 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        $academicyears = Academicyear::all();
+        $branches = Branch::all();
+        return view('pages.backend.subjects.create', compact('academicyears','branches'));
     }
 
     /**
@@ -31,8 +36,30 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        {
+
+            try {
+                $academicyears = new Academicyear();
+                $academicyears->name = $request->name;
+                $academicyears->email = $request->email;
+                $academicyears->password = Hash::make($request->password);
+                $academicyears->address = $request->address;
+                $academicyears->gender_id = $request->gender_id;
+                $academicyears->joining_date = $request->joining_date;
+                $academicyears->phone = $request->phone;
+                $academicyears->save();
+
+                return redirect()->route('subjects.index');
+
+            }
+
+            catch (\Exception $e){
+                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            }
+        }
     }
+
+
 
     /**
      * Display the specified resource.

@@ -30,7 +30,7 @@
                                     <div class="col-12">
                                         <h5 class="form-title"><span>Basic Details</span></h5>
                                     </div>
-                                    
+
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Name <span class="login-danger">*</span></label>
@@ -48,9 +48,9 @@
                                             </select>
                                         </div>
                                     </div>
-                                    
-                                
-                                   
+
+
+
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Mobile <span class="login-danger">*</span></label>
@@ -63,7 +63,7 @@
                                             <input class="form-control datetimepicker" value="{{ date('Y-m-d') }}" type="date" name="joining_date" >
                                         </div>
                                     </div>
-                                   
+
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Email <span class="login-danger">*</span></label>
