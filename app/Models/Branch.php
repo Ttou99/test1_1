@@ -10,7 +10,15 @@ class Branch extends Model
     use HasFactory;
 
     protected $table = 'branches';
-    protected $fillable =['name'];
+
+    public $timestamps = true;
+
+    protected $fillable =['name_branch','academicyear_id'];
+
+    public function academicyear()
+    {
+        return $this->belongsTo(Academicyear::class);
+    }
 
 
 }

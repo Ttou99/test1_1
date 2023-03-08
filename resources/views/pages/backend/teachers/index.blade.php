@@ -1,4 +1,7 @@
 @extends('layouts.backend.master')
+@section('css')
+@endsection
+
 
 @section('title')
     Teachers List
@@ -122,3 +125,5 @@
 @endsection
 
 
+@section('js')
+@endsection

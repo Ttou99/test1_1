@@ -7,8 +7,7 @@
 @section('content')
 
     <div class="page-wrapper">
-        <div class="content container-fluid">
-
+    <div class="content container-fluid">
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
@@ -75,28 +74,31 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
+                                    <?php $i = 0; ?>
+                                    @foreach ($academicyears as $academicyear)
                                         <tr>
-
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                                <?php $i++; ?>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $academicyear->name }}</td>
                                             <td class="text-end">
-                                                <div class="actions">
-                                                    <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
+                                                <div class="actions ">
+                                                    <a href="javascript:;" class="btn btn-sm bg-success-light me-2 ">
                                                         <i class="feather-eye"></i>
                                                     </a>
                                                     <a href="#" class="btn btn-sm bg-danger-light">
                                                         <i class="feather-edit"></i>
-                                                    </a>&nbsp;&nbsp;
+                                                    </a>
                                                     <form action="#" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm bg-success-light me-2"><i class="feather-trash"></i></button>
                                                     </form>
+
                                                 </div>
                                             </td>
                                         </tr>
+                                    @endforeach
+
                                     </tbody>
 
                                 </table>
@@ -107,8 +109,8 @@
             </div>
         </div>
 
-
     </div>
+
 
 
 

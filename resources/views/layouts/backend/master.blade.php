@@ -16,7 +16,7 @@
             @include('layouts.backend.main-sidebar')
         </div>
 
-            @yield('content')
+    @yield('content')
 
 
         @include('layouts.backend.footer')

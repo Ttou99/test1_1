@@ -12,5 +12,13 @@ class Academicyear extends Model
     protected $table = 'academicyears';
     protected $fillable =['name'];
 
+    public $timestamps = true;
+
+    public function branche()
+    {
+        return $this->hasMany(Branch::class);
+    }
+
+
 
 }

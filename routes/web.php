@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('teachers', TeacherController::class);
 
     Route::resource('subjects', SubjectController::class);
+    Route::get('/academicyear/{id}', [SubjectController::class, 'getbranches']);
 
     Route::resource('rooms', RoomController::class);
 

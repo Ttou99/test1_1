@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-          //  $table->bigInteger('academicyear_id')->unsigned();
-          //  $table->bigInteger('branch_id')->unsigned();
+            $table->string('name_subject');
+            $table->char('semestre', 1)->comment('S1 = Semestre 01, S2 = Semestre 02');
+            $table->foreignId('academicyear_id')->constrained('academicyears')->cascadeOnDelete();
+            $table->foreignId('branch_id')->constrained('branches')->cascadeOnDelete();
             $table->timestamps();
         });
     }

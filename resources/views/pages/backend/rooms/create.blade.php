@@ -6,6 +6,17 @@
 
 @section('content')
     <div class="page-wrapper">
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="content container-fluid">
 
             <div class="page-header">

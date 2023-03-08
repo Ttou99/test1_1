@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAcademicYears;
 use App\Models\Academicyear;
 use App\Models\Branch;
 use App\Models\Subject;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class SubjectController extends Controller
 {
@@ -15,8 +15,9 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::all();
-        return view('pages.backend.subjects.index',compact('subjects'));
+        $branches = Branch::all();
+        $academicyears = Academicyear::all();
+        return view('pages.backend.subjects.index',compact('academicyears','branches'));
 
 
     }
@@ -34,19 +35,15 @@ class SubjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAcademicYears $request)
     {
+        $validated = $request->validated();
+
         {
 
             try {
                 $academicyears = new Academicyear();
                 $academicyears->name = $request->name;
-                $academicyears->email = $request->email;
-                $academicyears->password = Hash::make($request->password);
-                $academicyears->address = $request->address;
-                $academicyears->gender_id = $request->gender_id;
-                $academicyears->joining_date = $request->joining_date;
-                $academicyears->phone = $request->phone;
                 $academicyears->save();
 
                 return redirect()->route('subjects.index');
@@ -91,5 +88,11 @@ class SubjectController extends Controller
     public function destroy(Subject $subject)
     {
         //
+    }
+
+    public function getbranches($id)
+    {
+        $list_branches = Branch::where("academicyear_id", $id)->pluck("name_branch", "id");
+        return $list_branches;
     }
 }

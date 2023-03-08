@@ -5,3 +5,4 @@
 <script src="{{asset('assets/plugins/apexchart/apexcharts.min.js')}}"></script>
 <script src="{{asset('assets/plugins/apexchart/chart-data.js')}}"></script>
 <script src="{{asset('assets/js/script.js')}}"></script>
+@yield('js')
