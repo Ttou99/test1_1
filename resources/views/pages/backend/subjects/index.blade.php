@@ -69,31 +69,40 @@
                                     <tr>
 
                                         <th>ID</th>
-                                        <th>Academic Year </th>
+                                        <th>Academic Year Name</th>
+                                        <th>Branch Name </th>
+                                        <th>Semestre </th>
+                                        <th>Subject Name </th>
                                         <th class="text-end">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php $i = 0; ?>
-                                    @foreach ($academicyears as $academicyear)
+                                    @foreach ($subjects as $subject)
                                         <tr>
                                                 <?php $i++; ?>
                                             <td>{{ $i }}</td>
-                                            <td>{{ $academicyear->name }}</td>
+                                            <td>{{ $subject->academicyear->name }}</td>
+                                            <td>{{ $subject->branch->name_branch }}</td>
+                                            <td>
+                                                @if($subject->semestre == 0) Semestre 01
+                                                @else Semestre 02
+                                                @endif
+                                            </td>
+                                            <td>{{ $subject->name_subject }}</td>
                                             <td class="text-end">
-                                                <div class="actions ">
-                                                    <a href="javascript:;" class="btn btn-sm bg-success-light me-2 ">
+                                                <div class="actions">
+                                                    <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
                                                         <i class="feather-eye"></i>
                                                     </a>
-                                                    <a href="#" class="btn btn-sm bg-danger-light">
+                                                    <a href="{{ route('subjects.edit',$subject->id) }}" class="btn btn-sm bg-danger-light">
                                                         <i class="feather-edit"></i>
-                                                    </a>
-                                                    <form action="#" method="post">
+                                                    </a>&nbsp;&nbsp;
+                                                    <form action="{{ route('subjects.destroy',$subject->id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm bg-success-light me-2"><i class="feather-trash"></i></button>
                                                     </form>
-
                                                 </div>
                                             </td>
                                         </tr>

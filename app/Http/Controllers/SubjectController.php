@@ -15,11 +15,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $branches = Branch::all();
-        $academicyears = Academicyear::all();
-        return view('pages.backend.subjects.index',compact('academicyears','branches'));
-
-
+        $subjects = Subject::all();
+        return view('pages.backend.subjects.index',compact('subjects'));
     }
 
     /**
@@ -35,25 +32,26 @@ class SubjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAcademicYears $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
 
-        {
+        try {
 
-            try {
-                $academicyears = new Academicyear();
-                $academicyears->name = $request->name;
-                $academicyears->save();
+            $subject = new Subject();
+            $subject->name_subject = $request->name_subject;
+            $subject->semestre = $request->semestre;
+            $subject->academicyear_id = $request->academicyear_id;
+            $subject->branch_id = $request->branch_id;
+            $subject->save();
 
-                return redirect()->route('subjects.index');
+            return redirect()->route('subjects.index');
 
-            }
-
-            catch (\Exception $e){
-                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-            }
         }
+
+        catch (\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+
     }
 
 
@@ -69,17 +67,33 @@ class SubjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Subject $subject)
+    public function edit($id)
     {
-        //
+        $academicyears = Academicyear::all();
+        $branches = Branch::all();
+        $subjects =  Subject::findOrFail($id);
+        return view('pages.backend.subjects.edit', compact('academicyears','branches','subjects'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Subject $subject)
+    public function update(Request $request)
     {
-        //
+        try{
+            $subject = Subject::findorfail($request->id);
+            $subject->name_subject = $request->name_subject;
+            $subject->semestre = $request->semestre;
+            $subject->academicyear_id = $request->academicyear_id;
+            $subject->branch_id = $request->branch_id;
+            $subject->save();
+            return redirect()->route('subjects.index');
+        }
+
+        catch (\Exception $e){
+                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -87,7 +101,15 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+        try {
+            $subject->delete();
+            return redirect()->route('subjects.index');
+        }
+
+        catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+
     }
 
     public function getbranches($id)

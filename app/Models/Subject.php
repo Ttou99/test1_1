@@ -19,12 +19,12 @@ class Subject extends Model
 
     public function branch()
     {
-        return $this->belongsTo('App\Models\Branch','branch_id');
+        return $this->belongsTo(Branch::class);
     }
 
     public function academicyear()
     {
-        return $this->belongsTo('App\Models\Academicyear','academicyear_id');
+        return $this->belongsTo(Academicyear::class);
     }
 }
 

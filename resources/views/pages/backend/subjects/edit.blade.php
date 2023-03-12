@@ -1,37 +1,20 @@
 @extends('layouts.backend.master')
 
-@section('css')
-@endsection
-
 @section('title')
-    Subject Add
+    Subject Edit
 @stop
 
 @section('content')
-
-
-
-        <div class="page-wrapper">
-
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
+    <div class="page-wrapper">
         <div class="content container-fluid">
 
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Add Subject</h3>
+                        <h3 class="page-title">Edit Subject</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('subjects.index') }}">Subjects</a></li>
-                            <li class="breadcrumb-item active">Add Subject</li>
+                            <li class="breadcrumb-item active">Edit Subject</li>
                         </ul>
                     </div>
                 </div>
@@ -41,8 +24,9 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('subjects.store') }}" class="form-accountant"  autocomplete="off">
+                            <form method="POST" action="{{ route('subjects.update','test') }}"  autocomplete="off">
                                 @csrf
+                                {{ method_field('PATCH') }}
                                 <div class="row">
                                     <div class="col-12">
                                         <h5 class="form-title"><span>Basic Details</span></h5>
@@ -51,11 +35,22 @@
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group local-forms">
                                             <label>Academic Years <span class="login-danger">*</span></label>
-                                            <select  name="academicyear_id" class="form-control select" onclick="console.log($(this).val())"
-                                                     onchange="console.log('change is firing')">
+                                            <input type="hidden" value="{{ $subjects->id }}" name="id">
+                                            <select  name="academicyear_id" class="form-control select">
                                                 <option value="" selected disabled>Select Academic Year</option>
-                                                @foreach ($academicyears as $academicyear)
-                                                    <option value="{{ $academicyear->id }}"> {{ $academicyear->name }}</option>
+                                                @foreach($academicyears as $academicyear)
+                                                  <option value="{{ $academicyear->id }}" {{ $academicyear->id == $subjects->academicyear_id ? 'selected' : ""}}>{{ $academicyear->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group local-forms">
+                                            <label>Branches <span class="login-danger">*</span></label>
+                                            <select  name="branch_id" id="branch_id" class="form-control select">
+                                                <option value="{{ $subjects->branch_id }}">{{ $subjects->branch->name_branch }}</option>
+                                                @foreach($branches as $branche)
+                                                   <option value="{{ $branche->id }}"> {{ $branche->name_branch }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -63,17 +58,9 @@
 
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group local-forms">
-                                            <label>Branches <span class="login-danger">*</span></label>
-                                                <select id="branch_id" name="branch_id" class="form-control select">
-                                                </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group local-forms">
                                             <label>Semestre <span class="login-danger">*</span></label>
-                                            <select name="semestre" class="form-control select">
-                                                <option value="" selected disabled>Select Semestre</option>
+                                            <select  name="semestre" id="semestre" class="form-control select">
+                                                <option value="{{ $subjects->semestre }}" selected disabled>{{ $subjects->semestre }}</option>
                                                 <option value="0">Semestre 01</option>
                                                 <option value="1">Semestre 02</option>
                                             </select>
@@ -82,7 +69,7 @@
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group local-forms">
                                             <label>Name Subject <span class="login-danger">*</span></label>
-                                            <input type="text" name="name_subject" class="form-control" placeholder="Enter Name Of Subject">
+                                            <input type="text" value="{{ $subjects->name_subject  }}" name="name_subject" class="form-control" placeholder="Entre Password">
                                         </div>
                                     </div>
 
@@ -100,10 +87,7 @@
         </div>
     </div>
 
-
-
 @endsection
-
 
 @section('js')
     <script>
@@ -129,4 +113,5 @@
         });
     </script>
 @endsection
+
 
